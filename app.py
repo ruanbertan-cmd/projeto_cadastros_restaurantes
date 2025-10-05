@@ -1,6 +1,8 @@
 import os
 
-restaurantes = []
+restaurantes = [{'nome': 'praça', 'categoria': 'italiana','ativo': True},
+                {'nome': 'madero', 'categoria': 'hamburgueria','ativo': True},
+                {'nome': 'giraffas', 'categoria': 'fast-food','ativo': False}]
 
 
 def exibir_menu():
@@ -30,7 +32,9 @@ def cadastrar_novo_restaurante():
     os.system('cls')
     print('Cadastro de novos restaurantes\n')
     nome_do_restaurante = input('Digite o nome do restaurante: ')
-    restaurantes.append(nome_do_restaurante)
+    categoria = input(f'Digite a categoria do restaurante {nome_do_restaurante}: ')
+    dados_do_restaurante = {'nome': nome_do_restaurante, 'categoria': categoria, 'ativo': False}
+    restaurantes.append(dados_do_restaurante)
     print(f'Restaurante {nome_do_restaurante} cadastrado com sucesso"\n')
     voltar_menu_principal()
 
@@ -40,8 +44,8 @@ def listar_restaurantes():
     if len(restaurantes) == 0:
         print('Nenhum restaurante cadastrado!')
     else:    
-        for i, restaurante in enumerate(restaurantes, start=1):
-            print(f'{i}. {restaurante}')
+        for restaurante in restaurantes:
+            print(f'- {restaurante["nome"]} - {restaurante["categoria"]} - {"Ativo" if restaurante["ativo"] else "Inativo"}')
     
     print()
     voltar_menu_principal()
